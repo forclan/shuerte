@@ -13,22 +13,21 @@ import {
 
 function mapStateToProps(state) {
   return {
-    arr: state.arrayReducer.arr
+    arr: state.arrayReducer.arr,
+    width: state.windowReducer.windowSize
   }
 }
 
 function mapActionsToProps(dispatch) {
   return bindActionCreators(actions, dispatch);
 }
-const click = () => {
-  console.log('block clicked');
-}
 
 class App extends Component {
+
   render() {
-    let {arr, blockClick} = this.props;
+    let {arr, blockClick, width} = this.props;
     return (
-      <DisplayTable blockClick={blockClick} blockRadix={4} shuffledArr={arr}/>
+      <DisplayTable blockClick={blockClick} width={width} blockRadix={4} shuffledArr={arr}/>
     );
   }
 }
@@ -37,7 +36,6 @@ const OutApp = connect(mapStateToProps, mapActionsToProps)(App);
 
 const store = createStore(reducers, window.devToolsExtension ? window.devToolsExtension() : f => f);
 
-console.log(store.getState());
 render(
   <Provider store={store} >
     <OutApp />

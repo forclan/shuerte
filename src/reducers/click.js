@@ -1,6 +1,18 @@
 import {combineReducers} from 'redux';
 import * as dataStore from '../actions/actions';
 
+function windowReducer(state = {windowSize: 400}, action) {
+  switch (action.type) {
+    case dataStore.SET_WINDOW_SIZE:
+      return {
+        windowSize: action.windowSize
+      }
+      break;
+    default:
+      return state
+  }
+}
+
 function arrayReducer(state = {radix: 4, arr: null}, action) {
   if (state.arr === null) {
     state.arr = dataStore.shuffle(state.radix * state.radix);
@@ -47,5 +59,6 @@ function clickReducer(state = {currentIdx: 1}, action) {
 
 export default combineReducers({
   clickReducer,
-  arrayReducer
+  arrayReducer,
+  windowReducer
 });

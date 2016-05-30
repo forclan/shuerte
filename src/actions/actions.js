@@ -2,9 +2,9 @@ export const SHUFFLE = 'SHUFFLE';
 export const SET_RADIX = 'SET_RADIX';
 export const RESET = 'RESET_CLICK';
 export const BLOCK_CLICK = 'BLOCK_CLICK';
+export const SET_WINDOW_SIZE = 'SET_WINDOW_SIZE';
 
 export const blockClick = (index) => {
-  console.log(index);
   return {
     type: BLOCK_CLICK,
     clickedIndex: index
@@ -51,3 +51,10 @@ export const reset = () => {
     type: RESET
   };
 };
+
+export const setWindowSize = (width) => {
+  return {
+    type: SET_WINDOW_SIZE,
+    windowSize: width
+  }
+}
