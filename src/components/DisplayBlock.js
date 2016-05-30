@@ -9,12 +9,15 @@ class DisplayBlock extends Component {
   render() {
     let {onClick, dispNum, style, width, height} = this.props;
     style.fontSize = '2em';
-    // style.verticalAlign = '50%';
+    style.width = width;
+    style.height = height;
+    style.alignItems = 'center';
+    style.justifyContent = 'center';
     return (
       <div onClick={onClick} style={style}>
-        <span>
+        <div>
           {dispNum}
-        </span>
+        </div>
       </div>
     );
   }

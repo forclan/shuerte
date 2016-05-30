@@ -41,7 +41,7 @@ export const shuffle = (len) => {
 
 export const setRadix = (radix) => {
   return {
-    type: SET_RADIX,
+      type: SET_RADIX,
     radix: radix
   }
 };

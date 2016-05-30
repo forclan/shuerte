@@ -36,9 +36,24 @@ const OutApp = connect(mapStateToProps, mapActionsToProps)(App);
 
 const store = createStore(reducers, window.devToolsExtension ? window.devToolsExtension() : f => f);
 
+let blockStyle = {
+  // textAlign: 'center',
+  display: 'flex',
+  flexGrow: 1,
+  // width: '10%',
+  background: 'red',
+  // alignItems: 'center',
+  // justifyContent: 'center',
+  ':hover': {
+    cursor: 'pointer',
+  }
+}
+
 render(
   <Provider store={store} >
     <OutApp />
   </Provider>
+
+  // <DisplayBlock onClick={null} dispNum={10} style={blockStyle} width={'100px'} height={'100px'}/>
   , document.getElementById('root')
 )

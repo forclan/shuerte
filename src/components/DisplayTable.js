@@ -1,20 +1,23 @@
 import React, {Component, PropTypes} from 'react';
 import DisplayBlock from './DisplayBlock';
-
-
+import Radium from 'radium';
 
 let blockStyle = {
-  textAlign: 'center',
+  // textAlign: 'center',
+  display: 'flex',
   flexGrow: 1,
-  width: '10%',
+  // width: '10%',
+  background: 'red',
   ':hover': {
-    cursor: 'pointer'
+    cursor: 'pointer',
   }
 }
 
 let tableStyle = {
   display: 'flex',
-  flexWrap: 'wrap'
+  flexWrap: 'wrap',
+  // justifyContent: 'center',
+  // alignItems: 'center'
 }
 
 const double2PercentStr = (val) => {
@@ -29,10 +32,13 @@ class DisplayTable extends Component {
     tableStyle.height = width;
     let blockSize = width / blockRadix;
     let blockSizePercent = blockSize / width;
-    blockStyle.width = double2PercentStr(blockSizePercent);
-    // console.log(blockClick(1));
+    // blockStyle.width = double2PercentStr(blockSizePercent);
     let displayBlocks = shuffledArr.map((val) => {
-      return (<DisplayBlock onClick={() => {blockClick(val)}} key={val} dispNum={val} width={blockSize} height={blockSize} style={blockStyle}/>)
+      return (
+        <div key={val} style={{width:blockSize, height:blockSize, justifyContent:'center',alignItems:'center'}}>
+          <DisplayBlock onClick={() => {blockClick(val)}} dispNum={val} width={blockSize} height={blockSize} style={blockStyle}/>
+        </div>
+      )
     })
     return (
       <div id='disp-table' style={tableStyle}>
@@ -49,4 +55,4 @@ DisplayBlock.PropTypes = {
   blockClick: PropTypes.func.isRequired
 }
 
-export default DisplayTable;
+export default Radium(DisplayTable);
