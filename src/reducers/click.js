@@ -41,13 +41,13 @@ function arrayReducer(state = {radix: 4, arr: null}, action) {
 }
 
 function timeReducer(state = {startTime: null, endTime: null}, action) {
-  switch (state.type) {
-    case ACTION_START:
+  switch (action.type) {
+    case dataStore.ACTION_START:
       return {
         startTime: action.time,
         endTime: null
       };
-    case ACTION_END:
+    case dataStore.ACTION_END:
       return {
         startTime: state.startTime,
         endTime: action.time

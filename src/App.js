@@ -22,19 +22,35 @@ function mapActionsToProps(dispatch) {
   return bindActionCreators(actions, dispatch);
 }
 
+const store = createStore(reducers, window.devToolsExtension ? window.devToolsExtension() : f => f);
+
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.dispatchRadix.bind(this);
+  }
+
+  dispatchRadix(action, val) {
+    action(val);
+  }
+
+  componentWillMount() {
+    let {arr, blockClick, width, blockRadix, setRadix} = this.props;
+    this.dispatchRadix(setRadix, blockRadix);
+  }
 
   render() {
-    let {arr, blockClick, width} = this.props;
+    let {arr, blockClick, width, blockRadix, setRadix} = this.props;
+
     return (
-      <DisplayTable blockClick={blockClick} width={width} blockRadix={4} shuffledArr={arr}/>
+      <DisplayTable blockClick={blockClick} width={width} shuffledArr={arr}/>
     );
   }
 }
 
 const OutApp = connect(mapStateToProps, mapActionsToProps)(App);
 
-const store = createStore(reducers, window.devToolsExtension ? window.devToolsExtension() : f => f);
+
 
 let blockStyle = {
   // textAlign: 'center',
@@ -51,7 +67,7 @@ let blockStyle = {
 
 render(
   <Provider store={store} >
-    <OutApp />
+    <OutApp blockRadix={5} />
   </Provider>
 
   // <DisplayBlock onClick={null} dispNum={10} style={blockStyle} width={'100px'} height={'100px'}/>
