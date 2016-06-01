@@ -13,6 +13,7 @@ function windowReducer(state = {windowSize: 400}, action) {
   }
 }
 
+
 function arrayReducer(state = {radix: 4, arr: null}, action) {
   if (state.arr === null) {
     state.arr = dataStore.shuffle(state.radix * state.radix);
@@ -39,7 +40,24 @@ function arrayReducer(state = {radix: 4, arr: null}, action) {
   }
 }
 
-function clickReducer(state = {currentIdx: 1}, action) {
+function timeReducer(state = {startTime: null, endTime: null}, action) {
+  switch (state.type) {
+    case ACTION_START:
+      return {
+        startTime: action.time,
+        endTime: null
+      };
+    case ACTION_END:
+      return {
+        startTime: state.startTime,
+        endTime: action.time
+      };
+    default:
+      return state;
+  }
+}
+
+function clickReducer(state = {currentIdx: 1, startTime: null, endTime: null}, action) {
   switch (action.type) {
     case dataStore.BLOCK_CLICK:
       if (action.clickedIndex === state.currentIdx)
@@ -60,5 +78,6 @@ function clickReducer(state = {currentIdx: 1}, action) {
 export default combineReducers({
   clickReducer,
   arrayReducer,
-  windowReducer
+  windowReducer,
+  timeReducer
 });

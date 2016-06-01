@@ -3,6 +3,8 @@ export const SET_RADIX = 'SET_RADIX';
 export const RESET = 'RESET_CLICK';
 export const BLOCK_CLICK = 'BLOCK_CLICK';
 export const SET_WINDOW_SIZE = 'SET_WINDOW_SIZE';
+export const ACTION_START = 'ACTION_START';
+export const ACTIOM_END = 'ACTION_END';
 
 export const blockClick = (index) => {
   return {
@@ -51,6 +53,20 @@ export const reset = () => {
     type: RESET
   };
 };
+
+export const start = (date) => {
+  return {
+    type: ACTION_START,
+    startTime: date
+  }
+}
+
+export const end = (date) => {
+  return {
+    type: ACTION_END,
+    endTime: data
+  }
+}
 
 export const setWindowSize = (width) => {
   return {
