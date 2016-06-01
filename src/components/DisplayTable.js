@@ -3,10 +3,8 @@ import DisplayBlock from './DisplayBlock';
 import Radium from 'radium';
 
 let blockStyle = {
-  // textAlign: 'center',
   display: 'flex',
   flexGrow: 1,
-  // width: '10%',
   background: 'red',
   ':hover': {
     cursor: 'pointer',
@@ -16,8 +14,6 @@ let blockStyle = {
 let tableStyle = {
   display: 'flex',
   flexWrap: 'wrap',
-  // justifyContent: 'center',
-  // alignItems: 'center'
 }
 
 const double2PercentStr = (val) => {
@@ -32,7 +28,6 @@ class DisplayTable extends Component {
     tableStyle.height = width;
     let blockSize = width / blockRadix;
     let blockSizePercent = blockSize / width;
-    // blockStyle.width = double2PercentStr(blockSizePercent);
     let displayBlocks = shuffledArr.map((val) => {
       return (
         <div key={val} style={{width:blockSize, height:blockSize, justifyContent:'center',alignItems:'center'}}>
@@ -49,8 +44,6 @@ class DisplayTable extends Component {
 }
 
 DisplayBlock.PropTypes = {
-  // width: PropTypes.number.isRequired,
-  // height: PropTypes.number.isRequired,
   blockRadix: PropTypes.number.isRequired,
   blockClick: PropTypes.func.isRequired
 }

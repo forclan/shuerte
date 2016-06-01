@@ -7,7 +7,7 @@ class DisplayBlock extends Component {
   }
 
   render() {
-    let {onClick, dispNum, style, width, height} = this.props;
+    let {onClick, dispText, style, width, height} = this.props;
     style.fontSize = '2em';
     style.width = width;
     style.height = height;
@@ -17,7 +17,7 @@ class DisplayBlock extends Component {
     return (
       <div onClick={onClick} style={style}>
         <div>
-          {dispNum}
+          {dispText}
         </div>
       </div>
     );

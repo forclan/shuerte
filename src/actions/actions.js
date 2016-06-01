@@ -1,6 +1,6 @@
 export const SHUFFLE = 'SHUFFLE';
 export const SET_RADIX = 'SET_RADIX';
-export const RESET = 'RESET_CLICK';
+export const ARRAY_RESET = 'RESET_CLICK';
 export const BLOCK_CLICK = 'BLOCK_CLICK';
 export const SET_WINDOW_SIZE = 'SET_WINDOW_SIZE';
 export const ACTION_START = 'ACTION_START';
@@ -48,9 +48,9 @@ export const setRadix = (radix) => {
   }
 };
 
-export const reset = () => {
+export const arrayReset = () => {
   return {
-    type: RESET
+    type: ARRAY_RESET
   };
 };
 

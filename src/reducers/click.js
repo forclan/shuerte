@@ -19,7 +19,7 @@ function arrayReducer(state = {radix: 4, arr: null}, action) {
     state.arr = dataStore.shuffle(state.radix * state.radix);
   }
   switch (action.type) {
-    case dataStore.RESET:
+    case dataStore.ARRAY_RESET:
       return {
         radix: state.radix,
         arr: dataStore.shuffle(state.radix * state.radix)
@@ -43,8 +43,6 @@ function arrayReducer(state = {radix: 4, arr: null}, action) {
 function timeReducer(state = {startTime: null, endTime: null}, action) {
   switch (action.type) {
     case dataStore.ACTION_START:
-      console.log(state.startTime === null);
-      console.log('state tims' + state.startTime);
       return {
         startTime: state.startTime === null ? action.startTime : state.startTime,
         endTime: null
@@ -54,6 +52,11 @@ function timeReducer(state = {startTime: null, endTime: null}, action) {
         startTime: state.startTime,
         endTime: action.time
       };
+    case dataStore.TIME_RESET:
+      return {
+        startTime: null,
+        endTime: null
+      }
     default:
       return state;
   }

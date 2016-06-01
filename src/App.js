@@ -40,9 +40,14 @@ class App extends Component {
   }
 
   render() {
-    let {start, arr, blockClick, width, blockRadix, setRadix} = this.props;
+    let {start, arr, blockClick, width, blockRadix, setRadix, finishFlag} = this.props;
+    let style = {
+      width: width,
+      height: width
+    };
+
     return (
-      <div id='dfdfd' onClick={() => start(new Date())}>
+      <div style={style} onClick={() => start(new Date())}>
       <DisplayTable blockClick={blockClick} width={width} shuffledArr={arr}/>
       </div>
     );
@@ -54,13 +59,9 @@ const OutApp = connect(mapStateToProps, mapActionsToProps)(App);
 
 
 let blockStyle = {
-  // textAlign: 'center',
   display: 'flex',
   flexGrow: 1,
-  // width: '10%',
   background: 'red',
-  // alignItems: 'center',
-  // justifyContent: 'center',
   ':hover': {
     cursor: 'pointer',
   }
