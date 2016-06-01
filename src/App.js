@@ -40,10 +40,11 @@ class App extends Component {
   }
 
   render() {
-    let {arr, blockClick, width, blockRadix, setRadix} = this.props;
-
+    let {start, arr, blockClick, width, blockRadix, setRadix} = this.props;
     return (
+      <div id='dfdfd' onClick={() => start(new Date())}>
       <DisplayTable blockClick={blockClick} width={width} shuffledArr={arr}/>
+      </div>
     );
   }
 }
@@ -67,7 +68,7 @@ let blockStyle = {
 
 render(
   <Provider store={store} >
-    <OutApp blockRadix={5} />
+    <OutApp blockRadix={3} />
   </Provider>
 
   // <DisplayBlock onClick={null} dispNum={10} style={blockStyle} width={'100px'} height={'100px'}/>
