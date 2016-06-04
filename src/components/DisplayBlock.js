@@ -1,13 +1,9 @@
-import React, {Component, PropTypes} from 'react';
-import Radium from 'radium';
+import React, { Component, PropTypes } from 'react';
+import radium from 'radium';
 
 class DisplayBlock extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
-    let {onClick, dispText, style, width, height} = this.props;
+    const { onClick, dispText, style, width, height } = this.props;
     style.fontSize = '2em';
     style.width = width;
     style.height = height;
@@ -22,15 +18,15 @@ class DisplayBlock extends Component {
       </div>
     );
   }
-};
+}
 
 DisplayBlock.PropTypes = {
   style: PropTypes.object,
   onClick: PropTypes.func,
   dispNum: PropTypes.number.isRequired,
   width: PropTypes.number.isRequired,
-  height: PropTypes.number.isRequired
-}
+  height: PropTypes.number.isRequired,
+};
 
-DisplayBlock = Radium(DisplayBlock);
-export default DisplayBlock;
+const RadiumDisplayBlock = radium(DisplayBlock);
+export default RadiumDisplayBlock;

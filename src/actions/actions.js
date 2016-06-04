@@ -4,12 +4,12 @@ export const ARRAY_RESET = 'RESET_CLICK';
 export const BLOCK_CLICK = 'BLOCK_CLICK';
 export const SET_WINDOW_SIZE = 'SET_WINDOW_SIZE';
 export const ACTION_START = 'ACTION_START';
-export const ACTIOM_END = 'ACTION_END';
+export const ACTION_END = 'ACTION_END';
 
 export const blockClick = (index) => {
   return {
     type: BLOCK_CLICK,
-    clickedIndex: index
+    clickedIndex: index,
   };
 };
 
@@ -17,7 +17,7 @@ export const blockClick = (index) => {
 const getRange = (start, count) => {
   return Array.apply(0, Array(count)).map((val, idx) => {
     return idx + start;
-  })
+  });
 };
 
 // Returns a random integer between min (included) and max (included)
@@ -27,10 +27,10 @@ const getRandomIntInclusive = (min, max) => {
 };
 
 const shuffleArr = (arr) => {
-  let len = arr.length;
+  const len = arr.length;
   for (let i = 0; i < len; i++) {
-    let switchIdx = getRandomIntInclusive(i, len - 1);
-    let tmpVal = arr[switchIdx];
+    const switchIdx = getRandomIntInclusive(i, len - 1);
+    const tmpVal = arr[switchIdx];
     arr[switchIdx] = arr[i];
     arr[i] = tmpVal;
   }
@@ -44,33 +44,33 @@ export const shuffle = (len) => {
 export const setRadix = (radix) => {
   return {
     type: SET_RADIX,
-    radix: radix
-  }
+    radix: radix,
+  };
 };
 
 export const arrayReset = () => {
   return {
-    type: ARRAY_RESET
+    type: ARRAY_RESET,
   };
 };
 
 export const start = (date) => {
   return {
     type: ACTION_START,
-    startTime: date
-  }
-}
+    startTime: date,
+  };
+};
 
 export const end = (date) => {
   return {
     type: ACTION_END,
-    endTime: data
-  }
-}
+    endTime: date,
+  };
+};
 
 export const setWindowSize = (width) => {
   return {
     type: SET_WINDOW_SIZE,
-    windowSize: width
-  }
-}
+    windowSize: width,
+  };
+};
