@@ -1,30 +1,37 @@
 import DisplayBlock from './DisplayBlock';
-import { Component, PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
 
-const msToMin(ms) {
-  let sec = ms / 1000;
-  return sec % 60 + 'min' + sec / 60 + 's';
+function msToMin(ms) {
+  const sec = ms / 1000;
+  const result = `$(sec % 60) min $(sec / 60)s`;
+  return result;
 }
 
 class StartBlock extends Component {
   render() {
     // time(ms) width(num)
-    let {width, style, onclick, time} = this.props;
+    const { width, style, onclick, time } = this.props;
     let dispText = 'Click To Start';
     if (time) {
-      dispText += '\nused time' + msToMin(time);
+      dispText += `\nused time $msToMin(time)`;
     }
     return (
-      <DisplayBlock width={width} height={height} style={style} dispText={text} onClick={onclick}/>
-    )
+      <DisplayBlock
+        width={width}
+        height={width}
+        style={style}
+        dispText={dispText}
+        onClick={onclick}
+      />
+    );
   }
 }
 
-StartBlobk.propTypes = {
+StartBlock.propTypes = {
   width: PropTypes.number.isRequired,
-  style; PropTypes.object,
+  style: PropTypes.object,
   onclick: PropTypes.func.isRequired,
-  time: PropTypes.number
-}
+  time: PropTypes.number,
+};
 
 export default StartBlock;
