@@ -53,7 +53,7 @@ function timeReducer(state = { startTime: null, endTime: null }, action) {
         startTime: state.startTime,
         endTime: action.time,
       };
-    case dataStore.TIME_RESET:
+    case dataStore.ARRAY_RESET:
       return {
         startTime: null,
         endTime: null,
@@ -63,7 +63,7 @@ function timeReducer(state = { startTime: null, endTime: null }, action) {
   }
 }
 
-function clickReducer(state = { currentIdx: 1, startTime: null, endTime: null }, action) {
+function clickReducer(state = { currentIdx: 1 }, action) {
   switch (action.type) {
     case dataStore.BLOCK_CLICK: {
       let currentIdx = null;
@@ -74,6 +74,11 @@ function clickReducer(state = { currentIdx: 1, startTime: null, endTime: null },
       }
       return {
         currentIdx,
+      };
+    }
+    case dataStore.ARRAY_RESET: {
+      return {
+        currentIdx: 1,
       };
     }
     default:

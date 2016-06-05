@@ -41,6 +41,7 @@ class App extends Component {
   render() {
     const {
       start,
+      arrayReset,
       arr,
       blockClick,
       width,
@@ -53,7 +54,7 @@ class App extends Component {
 
     return (
       <div style={style} onClick={() => start(new Date())}>
-        <Operation currentIdx={currentIdx-1} width={width/5} reset={null} />
+        <Operation currentIdx={currentIdx-1} width={width/5} reset={arrayReset} />
         <DisplayTable blockClick={blockClick} width={width} shuffledArr={arr} />
       </div>
     );

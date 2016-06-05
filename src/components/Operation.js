@@ -20,7 +20,7 @@ class Operation extends React.Component {
     const {width, reset, currentIdx} = this.props;
     return (
       <div style={operationStyle}>
-        <Block dispText={'reset'} style={blockStyle} width={width} height={width} />
+        <Block dispText={'reset'} onClick={reset} style={blockStyle} width={width} height={width} />
         <Block dispText={'time'} style={blockStyle} width={width} height={width} />
         <Block dispText={currentIdx} style={blockStyle} width={width} height={width} />
       </div>
