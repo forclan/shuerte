@@ -20,10 +20,10 @@ class DisplayBlock extends Component {
   }
 }
 
-DisplayBlock.PropTypes = {
+DisplayBlock.propTypes = {
   style: PropTypes.object,
   onClick: PropTypes.func,
-  dispNum: PropTypes.number.isRequired,
+  dispText: PropTypes.string.isRequired,
   width: PropTypes.number.isRequired,
   height: PropTypes.number.isRequired,
 };

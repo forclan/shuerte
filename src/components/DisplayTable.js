@@ -28,19 +28,17 @@ class DisplayTable extends Component {
       width: blockSize, height: blockSize, justifyContent: 'center', alignItems: 'center',
     };
     // const blockSizePercent = blockSize / width;
-    let displayBlocks = shuffledArr.map((val) => {
-      return (
-        <div key={val} style={style}>
-          <DisplayBlock
-            onClick={() => { blockClick(val); }}
-            dispText={val}
-            width={blockSize}
-            height={blockSize}
-            style={blockStyle}
-          />
-        </div>
-      );
-    });
+    let displayBlocks = shuffledArr.map((val) =>
+      <div key={val} style={style}>
+        <DisplayBlock
+          onClick={() => { blockClick(val); }}
+          dispText={val}
+          width={blockSize}
+          height={blockSize}
+          style={blockStyle}
+        />
+      </div>
+    );
     return (
       <div id="disp-table" style={tableStyle}>
         {displayBlocks}
@@ -49,7 +47,9 @@ class DisplayTable extends Component {
   }
 }
 
-DisplayBlock.PropTypes = {
+DisplayTable.propTypes = {
+  shuffledArr: PropTypes.array.isRequired,
+  width: PropTypes.number.isRequired,
   blockRadix: PropTypes.number.isRequired,
   blockClick: PropTypes.func.isRequired,
 };
