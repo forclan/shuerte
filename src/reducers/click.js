@@ -36,7 +36,7 @@ function arrayReducer(state = { radix: 4, arr: null }, action) {
     default:
       return {
         radix: state.radix,
-        arr: shuffleArr,
+        arr: shuffleArr || state.arr,
       };
   }
 }

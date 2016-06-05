@@ -32,7 +32,7 @@ class DisplayTable extends Component {
       <div key={val} style={style}>
         <DisplayBlock
           onClick={() => { blockClick(val); }}
-          dispText={val}
+          dispText={val.toString()}
           width={blockSize}
           height={blockSize}
           style={blockStyle}
@@ -50,7 +50,6 @@ class DisplayTable extends Component {
 DisplayTable.propTypes = {
   shuffledArr: PropTypes.array.isRequired,
   width: PropTypes.number.isRequired,
-  blockRadix: PropTypes.number.isRequired,
   blockClick: PropTypes.func.isRequired,
 };
 
