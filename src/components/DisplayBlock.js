@@ -9,7 +9,7 @@ class DisplayBlock extends Component {
     style.height = height;
     style.alignItems = 'center';
     style.justifyContent = 'center';
-    style.border = '1px dashed';
+    // style.border = '1px dashed';
     return (
       <div onClick={onClick} style={style}>
         <div>

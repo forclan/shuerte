@@ -1,4 +1,5 @@
 import DisplayTable from './components/DisplayTable';
+import Operation from './components/Operation';
 import reducers from './reducers/click';
 import { createStore, bindActionCreators } from 'redux';
 import { connect, Provider } from 'react-redux';
@@ -7,7 +8,11 @@ import React, { Component } from 'react';
 import { render } from 'react-dom';
 
 function mapStateToProps(state) {
-  return { arr: state.arrayReducer.arr, width: state.windowReducer.windowSize };
+  return {
+    arr: state.arrayReducer.arr,
+    width: state.windowReducer.windowSize,
+    currentIdx: state.clickReducer.currentIdx,
+  };
 }
 
 function mapActionsToProps(dispatch) {
@@ -39,14 +44,16 @@ class App extends Component {
       arr,
       blockClick,
       width,
+      currentIdx,
     } = this.props;
     let style = {
-      width: width,
+      width,
       height: width,
     };
 
     return (
       <div style={style} onClick={() => start(new Date())}>
+        <Operation currentIdx={currentIdx-1} width={width/5} reset={null} />
         <DisplayTable blockClick={blockClick} width={width} shuffledArr={arr} />
       </div>
     );

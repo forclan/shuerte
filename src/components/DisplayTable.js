@@ -5,15 +5,19 @@ import radium from 'radium';
 let blockStyle = {
   display: 'flex',
   flexGrow: 1,
-  background: 'red',
+  background: 'rgba(110, 153, 163, 0.74)',
+  border: '1px solid rgb(20, 20, 17)',
+  borderRadius: '10px',
   ':hover': {
     cursor: 'pointer',
+    boxShadow: '0 0 1em rgba(95, 113, 79, 0.32)',
   },
 };
 
 let tableStyle = {
   display: 'flex',
   flexWrap: 'wrap',
+  justifyContent: 'space-between',
 };
 
 
@@ -23,7 +27,7 @@ class DisplayTable extends Component {
     const blockRadix = Math.sqrt(shuffledArr.length);
     tableStyle.width = width;
     tableStyle.height = width;
-    let blockSize = width / blockRadix;
+    let blockSize = (width - 10) / blockRadix;
     const style = {
       width: blockSize, height: blockSize, justifyContent: 'center', alignItems: 'center',
     };
