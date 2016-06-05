@@ -4,7 +4,7 @@ import reducers from './reducers/click';
 import { createStore, bindActionCreators } from 'redux';
 import { connect, Provider } from 'react-redux';
 import * as actions from './actions/actions';
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { render } from 'react-dom';
 
 function mapStateToProps(state) {
@@ -12,6 +12,7 @@ function mapStateToProps(state) {
     arr: state.arrayReducer.arr,
     width: state.windowReducer.windowSize,
     currentIdx: state.clickReducer.currentIdx,
+    startTime: state.timeReducer.startTime,
   };
 }
 
@@ -46,6 +47,7 @@ class App extends Component {
       blockClick,
       width,
       currentIdx,
+      startTime,
     } = this.props;
     let style = {
       width,
@@ -54,13 +56,28 @@ class App extends Component {
 
     return (
       <div style={style} onClick={() => start(new Date())}>
-        <Operation currentIdx={currentIdx-1} width={width/5} reset={arrayReset} />
+        <Operation
+          currentIdx={currentIdx - 1}
+          width={width / 5}
+          reset={arrayReset}
+          startTime={startTime}
+        />
         <DisplayTable blockClick={blockClick} width={width} shuffledArr={arr} />
       </div>
     );
   }
 }
-
+App.propTypes = {
+  blockRadix: PropTypes.number.isRequired,
+  setRadix: PropTypes.func.isRequired,
+  start: PropTypes.func.isRequired,
+  arrayReset: PropTypes.func.isRequired,
+  arr: PropTypes.array.isRequired,
+  blockClick: PropTypes.func.isRequired,
+  width: PropTypes.number.isRequired,
+  currentIdx: PropTypes.number.isRequired,
+  startTime: PropTypes.object.isRequired,
+};
 const OutApp = connect(mapStateToProps, mapActionsToProps)(App);
 
 render(
