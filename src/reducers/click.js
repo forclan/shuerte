@@ -52,16 +52,18 @@ function timeReducer(state = {
   startTime: null,
   endTime: null,
 }, action) {
+  // console.log(action);
   switch (action.type) {
+
     case dataStore.ACTION_START:
       return {
         startTime: state.startTime === null ? action.startTime : state.startTime,
-        endTime: null,
+        endTime: state.endTime,
       };
     case dataStore.ACTION_END:
       return {
         startTime: state.startTime,
-        endTime: action.time,
+        endTime: action.endTime,
       };
     case dataStore.ARRAY_RESET:
       return {
@@ -74,7 +76,6 @@ function timeReducer(state = {
 }
 
 function clickReducer(state = {
-  currentState: dataStore.NOT_STARTED,
   currentIdx: 1,
   totalNum: null,
 }, action) {

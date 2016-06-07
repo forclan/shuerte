@@ -7,6 +7,7 @@ import * as actions from './actions/actions';
 import React, { Component, PropTypes } from 'react';
 import { render } from 'react-dom';
 import finishMiddleware from './middleware/finishMiddleware';
+import disableStart from './middleware/disableStart';
 
 function mapStateToProps(state) {
   return {
@@ -14,6 +15,8 @@ function mapStateToProps(state) {
     width: state.windowReducer.windowSize,
     currentIdx: state.clickReducer.currentIdx,
     startTime: state.timeReducer.startTime,
+    endTime: state.timeReducer.endTime,
+    finished: state.timeReducer.endTime !== null,
   };
 }
 
@@ -21,7 +24,7 @@ function mapActionsToProps(dispatch) {
   return bindActionCreators(actions, dispatch);
 }
 
-const createStoreWithMiddleware = applyMiddleware(finishMiddleware)(createStore);
+const createStoreWithMiddleware = applyMiddleware(finishMiddleware, disableStart)(createStore);
 
 const store = createStoreWithMiddleware(reducers, window.devToolsExtension
   ? window.devToolsExtension()
@@ -51,6 +54,8 @@ class App extends Component {
       width,
       currentIdx,
       startTime,
+      endTime,
+      finished,
     } = this.props;
     let style = {
       width,
@@ -64,6 +69,7 @@ class App extends Component {
           width={width / 5}
           reset={arrayReset}
           startTime={startTime}
+          endTime={endTime}
         />
         <DisplayTable blockClick={blockClick} width={width} shuffledArr={arr} />
       </div>
@@ -80,6 +86,8 @@ App.propTypes = {
   width: PropTypes.number.isRequired,
   currentIdx: PropTypes.number.isRequired,
   startTime: PropTypes.object.isRequired,
+  endTime: PropTypes.object.isRequired,
+  finished: PropTypes.bool.isRequired,
 };
 const OutApp = connect(mapStateToProps, mapActionsToProps)(App);
 

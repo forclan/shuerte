@@ -22,10 +22,13 @@ class Timer extends Component {
     });
   }
   render() {
-    const { style, width, height, startTime } = this.props;
+    const { style, width, height, startTime, endTime } = this.props;
     let elapsed = 0;
     if (startTime !== null) {
       elapsed = Math.round((this.state.currentTime - startTime) / 100);
+    }
+    if (endTime !== null) {
+      elapsed = Math.round((endTime - startTime) / 100);
     }
     const seconds = (elapsed / 10).toFixed(1);
     return (
@@ -36,6 +39,7 @@ class Timer extends Component {
 Timer.propTypes = {
   style: PropTypes.object.isRequired,
   startTime: PropTypes.object.isRequired,
+  endTime: PropTypes.object.isRequired,
   width: PropTypes.number.isRequired,
   height: PropTypes.number.isRequired,
 };

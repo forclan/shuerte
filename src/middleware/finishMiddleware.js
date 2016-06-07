@@ -2,12 +2,15 @@ import * as actions from '../actions/actions.js';
 
 const finishMiddleware = store => next => action => {
   let localAction = action;
+  const state = store.getState();
+  const totalNum = state.arrayReducer.arr.length;
   if (action.type === actions.BLOCK_CLICK) {
-    const clickReducer = store.clickReducer;
-    if (clickReducer.totalNum === clickReducer.currentIdx
-      && action.clickedIndex === clickReducer.totalNum) {
+    const clickReducer = state.clickReducer;
+    // console.log(totalNum + ' ' + clickReducer.currentIdx + ' ' + action.clickedIndex);
+    if (totalNum === clickReducer.currentIdx
+      && action.clickedIndex === totalNum) {
       localAction = {
-        type: action.ACTION_END,
+        type: actions.ACTION_END,
         endTime: new Date(),
       };
     }
