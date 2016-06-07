@@ -58,6 +58,7 @@ function timeReducer(state = {
     case dataStore.ACTION_START:
       return {
         startTime: state.startTime === null ? action.startTime : state.startTime,
+        // endTime: null,
         endTime: state.endTime,
       };
     case dataStore.ACTION_END:

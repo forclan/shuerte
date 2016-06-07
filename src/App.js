@@ -93,7 +93,7 @@ const OutApp = connect(mapStateToProps, mapActionsToProps)(App);
 
 render(
   <Provider store={store}>
-    <OutApp blockRadix={3} />
+    <OutApp blockRadix={4} />
   </Provider>,
 // <DisplayBlock onClick={null} dispNum={10} style={blockStyle} width={'100px'} height={'100px'}/>
   document.getElementById('root')

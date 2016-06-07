@@ -22,7 +22,13 @@ class Operation extends React.Component {
     const finishedFlag = endTime !== null;
     return (
       <div style={operationStyle}>
-        <Block dispText={'reset'} onClick={reset} style={blockStyle} width={width} height={width} />
+        <Block
+          dispText={finishedFlag ? 'Start' : 'Reset'}
+          onClick={reset}
+          style={blockStyle}
+          width={width}
+          height={width}
+        />
         <Timer
           startTime={startTime}
           endTime={endTime}
