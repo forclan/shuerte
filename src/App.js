@@ -55,7 +55,6 @@ class App extends Component {
       currentIdx,
       startTime,
       endTime,
-      finished,
     } = this.props;
     let style = {
       width,
@@ -87,7 +86,6 @@ App.propTypes = {
   currentIdx: PropTypes.number.isRequired,
   startTime: PropTypes.object.isRequired,
   endTime: PropTypes.object.isRequired,
-  finished: PropTypes.bool.isRequired,
 };
 const OutApp = connect(mapStateToProps, mapActionsToProps)(App);
 
