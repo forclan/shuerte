@@ -1,11 +1,12 @@
 import DisplayTable from './components/DisplayTable';
 import Operation from './components/Operation';
 import reducers from './reducers/click';
-import { createStore, bindActionCreators } from 'redux';
+import { createStore, bindActionCreators, applyMiddleware } from 'redux';
 import { connect, Provider } from 'react-redux';
 import * as actions from './actions/actions';
 import React, { Component, PropTypes } from 'react';
 import { render } from 'react-dom';
+import finishMiddleware from './middleware/finishMiddleware';
 
 function mapStateToProps(state) {
   return {
@@ -20,7 +21,9 @@ function mapActionsToProps(dispatch) {
   return bindActionCreators(actions, dispatch);
 }
 
-const store = createStore(reducers, window.devToolsExtension
+const createStoreWithMiddleware = applyMiddleware(finishMiddleware)(createStore);
+
+const store = createStoreWithMiddleware(reducers, window.devToolsExtension
   ? window.devToolsExtension()
   : f => f);
 

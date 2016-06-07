@@ -5,6 +5,8 @@ export const BLOCK_CLICK = 'BLOCK_CLICK';
 export const SET_WINDOW_SIZE = 'SET_WINDOW_SIZE';
 export const ACTION_START = 'ACTION_START';
 export const ACTION_END = 'ACTION_END';
+export const NOT_STARTED = 'NOT_STARTED';
+export const RUNNING = 'RUNNING';
 
 export const blockClick = (index) => ({
   type: BLOCK_CLICK,

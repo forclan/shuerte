@@ -1,7 +1,11 @@
-import { combineReducers } from 'redux';
+import {
+  combineReducers,
+} from 'redux';
 import * as dataStore from '../actions/actions';
 
-function windowReducer(state = { windowSize: 400 }, action) {
+function windowReducer(state = {
+  windowSize: 400,
+}, action) {
   switch (action.type) {
     case dataStore.SET_WINDOW_SIZE:
       return {
@@ -12,7 +16,10 @@ function windowReducer(state = { windowSize: 400 }, action) {
   }
 }
 
-function arrayReducer(state = { radix: 4, arr: null }, action) {
+function arrayReducer(state = {
+  radix: 4,
+  arr: null,
+}, action) {
   let shuffleArr = null;
   if (state.arr === null) {
     shuffleArr = dataStore.shuffle(state.radix * state.radix);
@@ -41,7 +48,10 @@ function arrayReducer(state = { radix: 4, arr: null }, action) {
   }
 }
 
-function timeReducer(state = { startTime: null, endTime: null }, action) {
+function timeReducer(state = {
+  startTime: null,
+  endTime: null,
+}, action) {
   switch (action.type) {
     case dataStore.ACTION_START:
       return {
@@ -63,24 +73,30 @@ function timeReducer(state = { startTime: null, endTime: null }, action) {
   }
 }
 
-function clickReducer(state = { currentIdx: 1 }, action) {
+function clickReducer(state = {
+  currentState: dataStore.NOT_STARTED,
+  currentIdx: 1,
+  totalNum: null,
+}, action) {
   switch (action.type) {
-    case dataStore.BLOCK_CLICK: {
-      let currentIdx = null;
-      if (action.clickedIndex === state.currentIdx) {
-        currentIdx = state.currentIdx + 1;
-      } else {
-        currentIdx = state.currentIdx;
+    case dataStore.BLOCK_CLICK:
+      {
+        let currentIdx = null;
+        if (action.clickedIndex === state.currentIdx) {
+          currentIdx = state.currentIdx + 1;
+        } else {
+          currentIdx = state.currentIdx;
+        }
+        return {
+          currentIdx,
+        };
       }
-      return {
-        currentIdx,
-      };
-    }
-    case dataStore.ARRAY_RESET: {
-      return {
-        currentIdx: 1,
-      };
-    }
+    case dataStore.ARRAY_RESET:
+      {
+        return {
+          currentIdx: 1,
+        };
+      }
     default:
       return state;
   }
