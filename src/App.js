@@ -30,6 +30,14 @@ const store = createStoreWithMiddleware(reducers, window.devToolsExtension
   ? window.devToolsExtension()
   : f => f);
 
+const containerStyle = {
+  // width: window.innerWidth,
+  // height: window.innerHeight,
+  // display: 'flex',
+  // justifyContent: 'center',
+  // alignItems: 'center',
+  // border: '2px solid rgba(24, 16, 9, 0.92)',
+};
 class App extends Component {
   constructor(props) {
     super(props);
@@ -57,20 +65,28 @@ class App extends Component {
       endTime,
     } = this.props;
     let style = {
+      // display: 'flex',
       width,
       height: width,
+      // justifyContent: 'center',
     };
 
     return (
-      <div style={style} onClick={() => start(new Date())}>
-        <Operation
-          currentIdx={currentIdx - 1}
-          width={width / 5}
-          reset={arrayReset}
-          startTime={startTime}
-          endTime={endTime}
-        />
-        <DisplayTable blockClick={blockClick} width={width} shuffledArr={arr} />
+      <div id="container" style={containerStyle}>
+        <div style={style} onClick={() => start(new Date())}>
+          <Operation
+            currentIdx={currentIdx - 1}
+            width={width / 5}
+            reset={arrayReset}
+            startTime={startTime}
+            endTime={endTime}
+          />
+          <DisplayTable
+            blockClick={blockClick}
+            width={width}
+            shuffledArr={arr}
+          />
+        </div>
       </div>
     );
   }
@@ -87,12 +103,27 @@ App.propTypes = {
   startTime: PropTypes.object.isRequired,
   endTime: PropTypes.object.isRequired,
 };
-const OutApp = connect(mapStateToProps, mapActionsToProps)(App);
+const AppMapStore = connect(mapStateToProps, mapActionsToProps)(App);
 
+class OutApp extends Component {
+  componentWillMount() {
+    this.store = store;
+  }
+  render() {
+    const { width, blockRadix } = this.props;
+    return (
+      <Provider store={this.store}>
+        <AppMapStore blockRadix={blockRadix} />
+      </Provider>
+    );
+  }
+}
+OutApp.propTypes = {
+  width: PropTypes.number,
+  blockRadix: PropTypes.number.isRequired,
+};
 render(
-  <Provider store={store}>
-    <OutApp blockRadix={4} />
-  </Provider>,
-// <DisplayBlock onClick={null} dispNum={10} style={blockStyle} width={'100px'} height={'100px'}/>
-  document.getElementById('root')
-);
+  <OutApp blockRadix={4} />,
+document.getElementById('root'));
+
+export default OutApp;

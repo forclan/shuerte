@@ -5,17 +5,24 @@ import Timer from './Timer';
 const operationStyle = {
   display: 'flex',
   flexWrap: 'wrap',
+  background: 'rgba(40, 127, 143, 0.54)',
   justifyContent: 'space-between',
 };
 
 const blockStyle = {
   display: 'flex',
-  background: 'rgba(73, 190, 49, 0.67)',
+  // background: 'rgba(14, 164, 204, 0.26)',
   borderRadius: '2px',
   ':hover': {
     cursor: 'pointer',
   },
 };
+
+const containerStyle = {
+  width: window.innerWidth,
+  height: window.innerHeight,
+};
+
 class Operation extends React.Component {
   render() {
     const { width, reset, currentIdx, startTime, endTime } = this.props;
