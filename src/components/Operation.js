@@ -18,11 +18,6 @@ const blockStyle = {
   },
 };
 
-const containerStyle = {
-  width: window.innerWidth,
-  height: window.innerHeight,
-};
-
 class Operation extends React.Component {
   render() {
     const { width, reset, currentIdx, startTime, endTime } = this.props;
@@ -58,8 +53,8 @@ Operation.propTypes = {
   width: PropTypes.number.isRequired,
   reset: PropTypes.func.isRequired,
   currentIdx: PropTypes.number.isRequired,
-  startTime: PropTypes.object.isRequired,
-  endTime: PropTypes.object.isRequired,
+  startTime: PropTypes.object,
+  endTime: PropTypes.object,
 };
 
 export default Operation;

@@ -1,26 +1,29 @@
-var path = require('path');
-var webpack = require('webpack');
+const path = require('path');
+const webpack = require('webpack');
 
-var isProduction = (function() {
-  return process.env.NODE_ENV !== 'deploy';
-})();
+const isDevelopment = process.env.NODE_ENV !== 'production';
 
-var entry = './src/App.js';
-var plugins = [],
-    devtool = null,
-    externals = {
-      'react': 'react',
-      'react-dom': 'react-dom',
-      'redux': 'redux',
-      'react-redux': 'react-redux'
-    };
+let entry = './src/App.js';
+let plugins = [
+  new webpack.DefinePlugin({
+    'process.env': {
+      NODE_ENV: JSON.stringify('production'),
+    },
+  })];
+let devtool = [];
+let externals = {
+      // 'react': 'react',
+      // 'react-dom': 'react-dom',
+      // 'redux': 'redux',
+      // 'react-redux': 'react-redux'
+};
 
-console.log('is deploy?' + isProduction);
-if (isProduction) {
-  entry =  [
+// console.log('is deploy?' + isProduction);
+if (isDevelopment) {
+  entry = [
     'webpack-dev-server/client?http://localhost:3000',
     'webpack/hot/only-dev-server',
-    entry
+    entry,
   ];
   externals = [];
   devtool = 'eval';
@@ -28,28 +31,29 @@ if (isProduction) {
 }
 
 module.exports = {
-  devtool: isProduction ? 'eval' : null,
+  // devtool: isProduction ? 'eval' : null,
+  devtool,
   entry: {
-    App: entry
+    App: entry,
   },
   output: {
     path: path.join(__dirname, 'lib'),
     filename: '[name].js',
-    library: 'shared-components',
+    // library: 'shared-components',
     libraryTarget: 'umd',
-    publicPath: '/static/'
+    publicPath: '/static/',
   },
-  plugins: plugins,
+  plugins,
   module: {
     loaders: [{
       test: /\.js$/,
       loaders: ['react-hot', 'babel'],
-      include: [path.join(__dirname, 'src'), path.join(__dirname, 'demo')]
-    }
-  ]
+      include: [path.join(__dirname, 'src'), path.join(__dirname, 'demo')],
+    },
+    ],
   },
   resolve: {
-    extensions: ['', '.webpack.js', '.web.js', '.js', '.scss', '.jsx']
+    extensions: ['', '.webpack.js', '.web.js', '.js', '.scss', '.jsx'],
   },
-  externals: externals
+  externals,
 };

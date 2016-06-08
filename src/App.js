@@ -68,6 +68,7 @@ class App extends Component {
       // display: 'flex',
       width,
       height: width,
+      // border: '1px solid rgba(12, 51, 52, 0.42)',
       // justifyContent: 'center',
     };
 
@@ -100,8 +101,8 @@ App.propTypes = {
   blockClick: PropTypes.func.isRequired,
   width: PropTypes.number.isRequired,
   currentIdx: PropTypes.number.isRequired,
-  startTime: PropTypes.object.isRequired,
-  endTime: PropTypes.object.isRequired,
+  startTime: PropTypes.object,
+  endTime: PropTypes.object,
 };
 const AppMapStore = connect(mapStateToProps, mapActionsToProps)(App);
 

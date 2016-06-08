@@ -38,8 +38,8 @@ class Timer extends Component {
 }
 Timer.propTypes = {
   style: PropTypes.object.isRequired,
-  startTime: PropTypes.object.isRequired,
-  endTime: PropTypes.object.isRequired,
+  startTime: PropTypes.object,
+  endTime: PropTypes.object,
   width: PropTypes.number.isRequired,
   height: PropTypes.number.isRequired,
 };
